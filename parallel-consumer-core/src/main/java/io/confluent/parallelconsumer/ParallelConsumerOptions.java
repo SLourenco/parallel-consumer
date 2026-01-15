@@ -117,7 +117,14 @@ public class ParallelConsumerOptions<K, V> {
          * Process messages in key order. Concurrency is at most the number of unique keys in a topic, limited by the
          * max concurrency or uncommitted settings.
          */
-        KEY
+        KEY,
+
+        /**
+         * Together batch size > 1, creates batches of the same key.
+         * Concurrency is at most the number of unique keys in a topic, limited by the max concurrency or uncommitted
+         * settings.
+         */
+        BATCH_BY_KEY
     }
 
     /**
