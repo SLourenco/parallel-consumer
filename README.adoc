@@ -1534,6 +1534,12 @@ ifndef::github_name[]
 toc::[]
 endif::[]
 
+== 0.5.4.0
+
+=== Improvements
+
+* feature: Add batch by key processing order, creating batches of the same key
+
 == 0.5.3.4
 
 === Fixes

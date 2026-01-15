@@ -641,7 +641,7 @@ public class WorkManagerTest {
     @ParameterizedTest
     @EnumSource
     void resumesFromNextShard(ParallelConsumerOptions.ProcessingOrder order) {
-        Assumptions.assumeFalse(order == KEY); // just want to test ordered vs unordered
+        Assumptions.assumeFalse(order == KEY || order == BATCH_BY_KEY); // just want to test ordered vs unordered
 
         ParallelConsumerOptions<?, ?> build = ParallelConsumerOptions.builder()
                 .ordering(order)
