@@ -19,6 +19,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.MockProducer;
+import org.apache.kafka.clients.producer.RoundRobinPartitioner;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.Serdes;
 import org.junit.jupiter.api.AfterEach;
@@ -179,7 +180,7 @@ public abstract class AbstractParallelEoSStreamProcessorTestBase {
 
     protected void instantiateConsumerProducer() {
         LongPollingMockConsumer<String, String> consumer = new LongPollingMockConsumer<>(OffsetResetStrategy.EARLIEST);
-        MockProducer<String, String> producer = new MockProducer<>(true,
+        MockProducer<String, String> producer = new MockProducer<>(true, new RoundRobinPartitioner(),
                 Serdes.String().serializer(), Serdes.String().serializer());
 
         this.producerSpy = spy(producer);
